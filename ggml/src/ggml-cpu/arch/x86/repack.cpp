@@ -95,12 +95,12 @@ static inline __m256 __avx_rearranged_f32cx8_load(ggml_fp16_t *x, __m128i arrang
     return _mm256_loadu_ps(tmp);
 }
 
-#define GGML_F32Cx8_LOAD(x)     __avx_f32cx8_load(x)
-#define GGML_F32Cx8_REPEAT_LOAD(x, loadMask)     __avx_repeat_f32cx8_load(x)
-#define GGML_F32Cx8_REARRANGE_LOAD(x, arrangeMask)     __avx_rearranged_f32cx8_load(x, arrangeMask)
+#define GGML_F32Cx8_LOAD(x)     __avx_f32cx8_load(const_cast<ggml_fp16_t*>(x))
+#define GGML_F32Cx8_REPEAT_LOAD(x, loadMask)     __avx_repeat_f32cx8_load(const_cast<ggml_fp16_t*>(x))
+#define GGML_F32Cx8_REARRANGE_LOAD(x, arrangeMask)     __avx_rearranged_f32cx8_load(const_cast<ggml_fp16_t*>(x), arrangeMask)
 #if defined(__AVX512F__)
-#define GGML_F32Cx8x2_LOAD(x, y)     __avx512_f32cx8x2_load(x, y)
-#define GGML_F32Cx16_REPEAT_LOAD(x)  __avx512_repeat_f32cx16_load(x)
+#define GGML_F32Cx8x2_LOAD(x, y)     __avx512_f32cx8x2_load(const_cast<ggml_fp16_t*>(x), const_cast<ggml_fp16_t*>(y))
+#define GGML_F32Cx16_REPEAT_LOAD(x)  __avx512_repeat_f32cx16_load(const_cast<ggml_fp16_t*>(x))
 #endif
 #endif
 #endif
