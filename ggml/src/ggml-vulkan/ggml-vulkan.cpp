@@ -51,6 +51,8 @@
 
 #include "ggml-vulkan-shaders.hpp"
 
+#undef GGML_VULKAN_BFLOAT16_GLSLC_SUPPORT
+
 // remove this once it's more widely available in the SDK
 #if !defined(VK_KHR_shader_bfloat16)
 
